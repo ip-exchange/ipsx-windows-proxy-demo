@@ -36,7 +36,10 @@ class ProxyHelper(object):
     @classmethod
     def read_proxy(cls) -> str:
         net = IEWindowsRegEditor()
-        return net.read_auto_config()
+        try:
+            return net.read_auto_config()
+        except:
+            return cls.EMPTY_STRING
 
     @classmethod
     def backup(cls) -> Tuple[bool, str]:
