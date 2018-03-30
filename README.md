@@ -1,1 +1,1 @@
-# ipsx-windows-proxy-demp
+# ipsx-windows-proxy-demo
