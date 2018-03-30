@@ -22,6 +22,7 @@
 
 from typing import Tuple, List
 from urllib.parse import urlparse
+from res import HISTORY_LOG_FILE
 
 
 class FileWriter(object):
@@ -56,10 +57,26 @@ def validate_pac_url(url: str) -> bool:
     if len(url.strip()) == 0:
         return False
     vld = urlparse(url)
-    if vld.scheme not in ("http", "http"):
+    if vld.scheme not in ("http", "https"):
         return False
     if vld.netloc == "":
         return False
     if not vld.path.endswith(".pac"):
         return False
     return True
+
+
+def history_log(event: str) -> Tuple[bool, str]:
+    try:
+        with open(HISTORY_LOG_FILE, "a") as file_:
+            file_.write(event)
+        return True, event
+    except Exception as e:
+        return False, str(e)
+
+def history_init() -> Tuple[bool, str]:
+    try:
+        with open(HISTORY_LOG_FILE, "r") as file_:
+            return True, file_.read()
+    except Exception as e:
+        return False, str(e)

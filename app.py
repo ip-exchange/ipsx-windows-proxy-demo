@@ -22,12 +22,12 @@
 
 import wx
 
-from config import BACKUP_REG
+from res import BACKUP_REG
 from proxy import ProxyHelper
 
 class App(object):
 
-    __INSTANCE = wx.App(True, "debug.log")
+    __INSTANCE = wx.App(True, "debug")
 
     @classmethod
     def register(cls, panel: wx.Panel) -> "App":

@@ -101,5 +101,7 @@ ENV/
 .mypy_cache/
 
 # ipsx
-backup.ipsx
-debug.log
+backup
+debug
+history
+resources/

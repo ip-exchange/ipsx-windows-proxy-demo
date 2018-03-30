@@ -23,14 +23,16 @@
 import wx
 
 
-BACKUP_REG = "backup.ipsx"
+BACKUP_REG = "backup"
 BACKUP_ERR = "Cannot create backup: {}. Leaving your configuration unchanged."
 
 INVALID_URL = "Invalid PAC resource provided. Leaving your configuration unchanged."
 
+HISTORY_LOG_FILE = "history"
+
 OK, FAIL = 0x0a, 0x0b
 APP_CONFIG = {
     "title": "IP.SX Proxy Helper",
-    "size": (300, 180),
+    "size": (290, 360),
     "style": wx.DEFAULT_FRAME_STYLE ^ wx.RESIZE_BORDER
 }

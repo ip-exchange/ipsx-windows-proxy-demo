@@ -21,8 +21,7 @@
 # SOFTWARE.
 
 from typing import Tuple
-from re import compile, match
-from config import OK
+from res import OK, FAIL
 from reg import IEWindowsRegEditor
 from util import FileWriter, hex_dump
 
@@ -34,7 +33,7 @@ class ProxyHelper(object):
     backup_file = ""
 
     @classmethod
-    def read_proxy(cls) -> str:
+    def read_pac_link(cls) -> str:
         net = IEWindowsRegEditor()
         try:
             return net.read_auto_config()
@@ -54,7 +53,7 @@ class ProxyHelper(object):
         return ok, err
 
     @classmethod
-    def restoreDefaults(cls) -> "ProxyHelper":
+    def restore_defaults(cls) -> "ProxyHelper":
         net = IEWindowsRegEditor()
         net.write_auto_config(cls.EMPTY_STRING)
         bytez_in = net.read_default_connection_settings()
@@ -65,7 +64,7 @@ class ProxyHelper(object):
         return cls
 
     @classmethod
-    def installPacFile(cls, link: str) -> "ProxyHelper":
+    def install_pac_file(cls, link: str) -> "ProxyHelper":
         net = IEWindowsRegEditor()
         net.write_auto_config(link)
         bytez_in = net.read_default_connection_settings()
@@ -80,3 +79,11 @@ class ProxyHelper(object):
         if cls.last_error != cls.EMPTY_STRING:
             return FAIL
         return OK
+
+    @classmethod
+    def get_last_error(cls) -> str:
+        return cls.last_error
+
+    @classmethod
+    def get_last_status(cls) -> str:
+        return cls.last_status
