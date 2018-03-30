@@ -56,7 +56,7 @@ def validate_pac_url(url: str) -> bool:
     if len(url.strip()) == 0:
         return False
     vld = urlparse(url)
-    if vld.scheme not in ("http", "http"):
+    if vld.scheme not in ("http", "https"):
         return False
     if vld.netloc == "":
         return False
